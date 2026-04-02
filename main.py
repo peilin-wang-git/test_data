@@ -2,20 +2,20 @@ from __future__ import annotations
 
 import argparse
 
-from src.evaluator import SegmentationEvaluator
-from src.io_utils import load_config
+from src.evaluator import MRLINACEvaluator
+from src.io_utils import load_yaml_config
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Evaluate MRLINAC segmentation consistency.")
-    parser.add_argument("--config", type=str, required=True, help="Path to YAML config file.")
+    parser = argparse.ArgumentParser(description="MRLINAC multi-rater segmentation evaluator")
+    parser.add_argument("--config", type=str, required=True, help="Path to config YAML")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    cfg = load_config(args.config)
-    evaluator = SegmentationEvaluator(cfg)
+    config = load_yaml_config(args.config)
+    evaluator = MRLINACEvaluator(config)
     evaluator.run()
 
 
