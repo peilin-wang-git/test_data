@@ -1,1 +1,1 @@
-"""MRLINAC segmentation consistency evaluation package."""
+"""MRLINAC MRI segmentation consistency evaluation framework."""
