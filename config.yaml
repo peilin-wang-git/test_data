@@ -1,0 +1,39 @@
+images_root: ./data/images
+oncologist_labels_root: ./data/labels/oncologist
+radiologist1_labels_root: ./data/labels/radiologist_1
+radiologist2_labels_root: ./data/labels/radiologist_2
+nnunet_pred_root: ./data/preds/nnunet
+
+output_root: ./outputs
+log_file: ./logs/run.log
+
+image_suffix: _0000
+label_suffix: ""
+image_caseid_pattern: "^(?P<case_id>.+)_0000$"
+
+supported_image_exts: [".nii.gz", ".nii", ".mha", ".nrrd"]
+
+organs:
+  prostate:
+    order: 1
+    RGB: [205, 180, 219]
+    note: purple
+  rectum:
+    order: 2
+    RGB: [255, 175, 204]
+    note: blue
+  bladder:
+    order: 3
+    RGB: [162, 210, 255]
+    note: pink
+
+staple_sources: ["oncologist", "radiologist_1", "radiologist_2"]
+staple_threshold: 0.5
+save_staple_masks: true
+save_staple_multiclass: true
+
+save_overlay_previews: true
+preview_slice_mode: axial   # axial | three_plane
+overlay_alpha: 0.40
+
+continue_on_case_error: true
