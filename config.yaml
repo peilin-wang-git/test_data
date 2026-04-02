@@ -1,0 +1,25 @@
+data:
+  data_root: ./data
+  case_glob: "*"
+  allowed_extensions: [".nii.gz", ".nii", ".mha", ".nrrd"]
+  file_template: "{source}_{organ}{ext}"
+  recursive: false
+
+sources:
+  all: ["oncologist", "radiologist_1", "radiologist_2", "nnunet"]
+  human: ["oncologist", "radiologist_1", "radiologist_2"]
+  staple_inputs: ["oncologist", "radiologist_1", "radiologist_2"]
+
+organs: ["prostate", "bladder", "rectum"]
+
+output:
+  output_dir: ./outputs
+  detailed_csv: detailed_results.csv
+  summary_csv: summary_results.csv
+  staple_dir: staple_masks
+  save_staple_masks: true
+
+runtime:
+  staple_threshold: 0.5
+  log_file: ./logs/run.log
+  continue_on_error: true
