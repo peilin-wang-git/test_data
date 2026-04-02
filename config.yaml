@@ -1,0 +1,48 @@
+case_table_csv: ./new_path.csv
+
+nnunet_pred_root: ./data/preds/nnunet
+radiologist1_labels_root: ./data/labels/radiologist_1
+radiologist2_labels_root: ./data/labels/radiologist_2
+
+output_root: ./outputs
+log_file: ./logs/run.log
+
+# nnUNet prediction matching
+nnunet_match_use_label_basename_first: true
+allow_fallback_match_from_image_name: true
+
+# Optional image suffix used when fallback from image name is enabled
+image_suffix: _0000
+supported_image_exts: [".nii.gz", ".nii", ".mha", ".nrrd"]
+
+# Strict label definition (background=0)
+label_mapping:
+  background: 0
+  prostate: 1
+  rectum: 2
+  bladder: 3
+
+organs:
+  prostate:
+    order: 1
+    RGB: [205, 180, 219]
+    note: purple
+  rectum:
+    order: 2
+    RGB: [255, 175, 204]
+    note: blue
+  bladder:
+    order: 3
+    RGB: [162, 210, 255]
+    note: pink
+
+staple_sources: ["oncologist", "radiologist_1", "radiologist_2"]
+staple_threshold: 0.5
+save_staple_masks: true
+save_staple_multiclass: true
+
+save_overlay_previews: true
+preview_slice_mode: axial   # axial | three_plane
+overlay_alpha: 0.40
+
+continue_on_case_error: true
